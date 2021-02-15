@@ -8,6 +8,7 @@ class SchoolTeacher(models.Model):
 
     _name = 'school.teacher'
     _description = 'Teacher Information'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     employee_id = fields.Many2one('hr.employee', 'Employee ID',
                                   ondelete="cascade",

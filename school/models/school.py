@@ -19,7 +19,7 @@ def emailvalidation(email):
         email_regex = re.compile(EM)
         if not email_regex.match(email):
             raise ValidationError(_("This seems not to be valid email.\
-            Please enter email in correct format!"))
+Please enter email in correct format!"))
 
 
 class AcademicYear(models.Model):
@@ -748,8 +748,8 @@ class StudentNews(models.Model):
         # Check if out going mail configured
         mail_server_ids = obj_mail_server.search([])
         if not mail_server_ids:
-            raise UserError(_('User Email Configuration!'),
-                            _("Outgoing mail server not specified!"))
+            raise UserError(_("""User Email Configuration!
+Outgoing mail server not specified!"""))
         mail_server_record = mail_server_ids[0]
         email_list = []
         # Check email is defined in student
@@ -758,8 +758,8 @@ class StudentNews(models.Model):
                 email_list = [news_user.email for news_user in news.user_ids
                               if news_user.email]
                 if not email_list:
-                    raise UserError(_('User Email Configuration!'),
-                                     _("Email not found in users !"))
+                    raise UserError(_("""User Email Configuration!
+Email not found in users !"""))
             # Check email is defined in user created from employee
             else:
                 for employee in emp_obj.search([]):
@@ -768,8 +768,8 @@ class StudentNews(models.Model):
                     elif employee.user_id and employee.user_id.email:
                         email_list.append(employee.user_id.email)
                 if not email_list:
-                    raise UserError(_('Email Configuration!'),
-                                     _("Email not defined!"))
+                    raise UserError(_("""Email Configuration!'
+Email not defined!"""))
             news_date = news.date
             # Add company name while sending email
             company = user.company_id.name or ''
@@ -783,8 +783,8 @@ class StudentNews(models.Model):
             smtp_user = mail_server_record.smtp_user or False
             # Check if mail of outgoing server configured
             if not smtp_user:
-                raise UserError(_('Email Configuration '),
-                                 _("Kindly,Configure Outgoing Mail Server!"))
+                raise UserError(_("""Email Configuration!
+Kindly,Configure Outgoing Mail Server!"""))
             notification = 'Notification for news update.'
             # Configure email
             message = obj_mail_server.build_email(email_from=smtp_user,

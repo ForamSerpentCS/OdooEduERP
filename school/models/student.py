@@ -259,6 +259,8 @@ class StudentStudent(models.Model):
         '''Inherited method write to assign 
         student to their respective teacher'''
         teacher = self.env['school.teacher']
+        if vals.get('email'):
+            school.emailvalidation(vals.get('email'))
         if vals.get('parent_id'):
             for parent in vals.get('parent_id')[0][2]:
                 teacher_rec = teacher.search([('stu_parent_id', '=', parent)])

@@ -327,7 +327,7 @@
         <field name="name">Student KANBAN</field>
         <field name="model">student.student</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="standard_id" nocreate="1" create="false">
+            <kanban default_group_by="standard_id" nocreate="1">
                 <field name="color"/>
                 <field name="id"/>
                 <field name="name"/>
@@ -459,8 +459,8 @@
                             <field name="company_id" invisible="1"/>
                         </group>
                         <group string="Class Information">
-                            <field name="medium_id" placeholder="Medium" widget="selection" attrs="{'readonly':[('state','=','alumni')]}"/>
-                            <field name="standard_id" placeholder="Class" domain="[('school_id','=',school_id),('medium_id','=',medium_id)]" widget="selection" attrs="{'readonly':[('state','=','alumni')]}"/>
+                            <field name="medium_id" widget="selection" attrs="{'readonly':[('state','=','alumni')]}"/>
+                            <field name="standard_id" domain="[('school_id','=',school_id),('medium_id','=',medium_id)]" widget="selection" attrs="{'readonly':[('state','=','alumni')]}"/>
                             <field name="division_id" placeholder="Division" widget="selection" attrs="{'readonly':[('state','=','alumni')]}" invisible="1"/>
                             
                         </group>
